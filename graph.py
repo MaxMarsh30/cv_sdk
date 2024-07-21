@@ -105,10 +105,10 @@ def image_graph(img_name, blur_ksize, thresh_blocksize, eps_fac):
     processed_image = detect.pre_process_image(enhanced_image, 
                                                blur_ksize=blur_ksize, #25
                                                thresh_blocksize=thresh_blocksize, #15
-                                               min_size=1500, 
+                                               min_size=2500, 
                                                current_folder = current_folder,
                                                img_new_name=img_new_name,
-                                               OTSU=OTSU)
+                                               OTSU=True)
     cv2.imwrite(os.path.join(current_folder, "image", "processed_image", img_new_name), processed_image)
     # Получение контуров стен
     if OTSU==True: 

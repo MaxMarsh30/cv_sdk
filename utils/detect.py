@@ -16,7 +16,7 @@ def enhance_contrast(image):
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
     return clahe.apply(image)
 
-def pre_process_image(image, blur_ksize=5, thresh_blocksize=11, min_size=1500, current_folder="", img_new_name="", OTSU=True):
+def pre_process_image(image, blur_ksize=25, thresh_blocksize=11, min_size=500, current_folder="", img_new_name="", OTSU=True):
     """
     Предобработка изображения для улучшения распознавания стен.
     """
@@ -27,6 +27,8 @@ def pre_process_image(image, blur_ksize=5, thresh_blocksize=11, min_size=1500, c
     thresh = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
                                    cv2.THRESH_BINARY_INV, thresh_blocksize, 2)
     cv2.imwrite(os.path.join(current_folder, "image", "processed_image", "threshold", "adaptiveThreshold_" + img_new_name), thresh)
+    
+    # обычный threshold Otsu
     ret2,th2 = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     cv2.imwrite(os.path.join(current_folder, "image", "processed_image", "threshold", "Threshold_OTSU_" + img_new_name), th2)
     #cv2.imshow('gray', th2)
@@ -58,7 +60,7 @@ def get_wall_contours(image):
     Получение контуров стен из изображения.
     """
     start_time = time.time()
-    contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     end_time = time.time()
     print(f"Time for findContours: {end_time - start_time:.4f} seconds")
     return contours

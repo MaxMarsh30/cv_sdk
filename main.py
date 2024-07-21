@@ -14,8 +14,8 @@ def calculate_parameters(width, height):
         [8000, 11679]
     ])
     parameters = np.array([
-        [5, 40, 0.001],
-        [5, 22, 0.0001]
+        [3, 40, 0.001],
+        [3, 22, 0.0001]
     ])
     
     # Интерполяция параметров
@@ -36,7 +36,7 @@ def calculate_parameters(width, height):
 
 
 # эмулирую отправку изображения на сервер из клиента в простом виде
-image_name = '_20240620_164708_fix.png'
+image_name = '_20240721_184957_fix.png'
 image_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'image' , image_name)
 with open(image_file, 'rb') as file:
     image = Image.open(image_file)

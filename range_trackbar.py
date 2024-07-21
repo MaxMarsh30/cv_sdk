@@ -15,7 +15,7 @@ cv.createTrackbar('V',Winname,0,255,nothing)
 cv.createTrackbar('H2',Winname,0,255,nothing)
 cv.createTrackbar('S2',Winname,0,255,nothing)
 cv.createTrackbar('V2',Winname,0,255,nothing)
-frame = cv.imread(r"C:\Users\Vadim.Beshten\Desktop\Screenshot 2024-07-10 133058.png")
+frame = cv.imread(r"C:\projects\cv\cv_sdk\image\_20240627_125756_fix.png")
 while True:
     H = cv.getTrackbarPos('H', 'Frame:')
     S = cv.getTrackbarPos('S', 'Frame:')
